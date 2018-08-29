@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <timer Value="90" />
+  <user Value="npnhatduy" />
+  <pass Value="Duy123456" /> 
+<pathftp Value="ftp://www.duy.somee.com" /> 
+<pathfilelocal Value="D:/configfile/folderlocal" />
+<default Value="D:/configfile/default" />
+<hourupdefault Value="6-18" />
+<hourupran Value="18-23;0-6" />
+<GenFileName Value="DuckFlypro2015.txt;DuckJumperGame.txt;GameAriesCrush.txt" />
+<GenTypeAd Value="amazon" />
+<GenAd Value="ad3;ad5;ad8" />
+<CheckGen Value="false" />
+</Config>
