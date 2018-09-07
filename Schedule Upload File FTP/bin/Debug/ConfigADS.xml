@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GenADS>
+  <DuckFlypro2015 OnAds="ad3" RanAds="ad5,ad1" />
+  <DuckJumperGame OnAds="ad3" RanAds="ad5,ad1" />
+  <EditorPhoto2015 OnAds="ad3" RanAds="ad5,ad1" />
+  <GameAriesCrush OnAds="ad3" RanAds="ad5,ad1" />
+  <VNPhotoMagic OnAds="ad3" RanAds="ad5,ad1" />
+</GenADS>

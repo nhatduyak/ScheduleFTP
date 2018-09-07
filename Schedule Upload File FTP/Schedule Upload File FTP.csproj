@@ -94,6 +94,7 @@
     <Compile Include="usctr\UsrFileConfig.Designer.cs">
       <DependentUpon>UsrFileConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="XmlHelper.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

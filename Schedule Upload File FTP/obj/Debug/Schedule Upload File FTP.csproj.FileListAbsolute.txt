@@ -9,3 +9,13 @@ D:\Source-14-02-2017\Source\Schedule Upload File FTP\Schedule Upload File FTP\ob
 D:\Source-14-02-2017\Source\Schedule Upload File FTP\Schedule Upload File FTP\obj\Debug\Schedule Upload File FTP.exe.licenses
 D:\Source-14-02-2017\Source\Schedule Upload File FTP\Schedule Upload File FTP\obj\Debug\Schedule Upload File FTP.exe
 D:\Source-14-02-2017\Source\Schedule Upload File FTP\Schedule Upload File FTP\obj\Debug\Schedule Upload File FTP.pdb
+D:\Source-14-02-2017\Source\Schedule Upload File FTP\ScheduleFTP\Schedule Upload File FTP\bin\Debug\Schedule Upload File FTP.exe.config
+D:\Source-14-02-2017\Source\Schedule Upload File FTP\ScheduleFTP\Schedule Upload File FTP\obj\Debug\Schedule Upload File FTP.exe
+D:\Source-14-02-2017\Source\Schedule Upload File FTP\ScheduleFTP\Schedule Upload File FTP\obj\Debug\Schedule Upload File FTP.pdb
+D:\Source-14-02-2017\Source\Schedule Upload File FTP\ScheduleFTP\Schedule Upload File FTP\bin\Debug\Schedule Upload File FTP.exe
+D:\Source-14-02-2017\Source\Schedule Upload File FTP\ScheduleFTP\Schedule Upload File FTP\bin\Debug\Schedule Upload File FTP.pdb
+D:\Source-14-02-2017\Source\Schedule Upload File FTP\ScheduleFTP\Schedule Upload File FTP\obj\Debug\Schedule_Upload_File_FTP.Form1.resources
+D:\Source-14-02-2017\Source\Schedule Upload File FTP\ScheduleFTP\Schedule Upload File FTP\obj\Debug\Schedule_Upload_File_FTP.Properties.Resources.resources
+D:\Source-14-02-2017\Source\Schedule Upload File FTP\ScheduleFTP\Schedule Upload File FTP\obj\Debug\Schedule_Upload_File_FTP.usctr.UsrFileConfig.resources
+D:\Source-14-02-2017\Source\Schedule Upload File FTP\ScheduleFTP\Schedule Upload File FTP\obj\Debug\Schedule Upload File FTP.csproj.GenerateResource.Cache
+D:\Source-14-02-2017\Source\Schedule Upload File FTP\ScheduleFTP\Schedule Upload File FTP\obj\Debug\Schedule Upload File FTP.exe.licenses

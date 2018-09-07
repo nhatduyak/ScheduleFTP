@@ -10,6 +10,7 @@ using ConfigCOMPortBank;
 using System.IO;
 using System.Xml;
 using Schedule_Upload_File_FTP.usctr;
+using Tools;
 
 namespace Schedule_Upload_File_FTP
 {
@@ -22,7 +23,7 @@ namespace Schedule_Upload_File_FTP
         public Form1()
         {
             InitializeComponent();
-
+            GenAndUpload();
             //test
            // GenAndUpload();
 
@@ -406,13 +407,60 @@ namespace Schedule_Upload_File_FTP
         {
             try
             {
-                DirectoryInfo dsource = new DirectoryInfo(CTLConfig._pathfilelocal);
-                foreach(FileInfo f in dsource.GetFiles("*.txt"))
+                //DirectoryInfo dsource = new DirectoryInfo(CTLConfig._pathfilelocal);
+                
+                //code cu GenFrom file txt
+                //foreach(FileInfo f in dsource.GetFiles("*.txt"))
+                //{
+                //    //set ID APP
+                //    SetValueFile(f.FullName);
+                //    //set ads
+                //    SetTrueFalseAD(f.FullName);
+
+                //    FTPHelper ftphelper = new FTPHelper(CTLConfig._user, CTLConfig._pass, CTLConfig._pathftp);
+                //    ftphelper.UploadFile(f.FullName);
+                //}
+                //end
+                
+                //code moi genfromfile xml
+                FileInfo filegenxml=new FileInfo(Path.Combine(Application.StartupPath,"ConfigADS.xml"));
+                if (filegenxml.Exists)
                 {
-                    SetValueFile(f.FullName);
-                    SetTrueFalseAD(f.FullName);
-                    FTPHelper ftphelper = new FTPHelper(CTLConfig._user, CTLConfig._pass, CTLConfig._pathftp);
-                    ftphelper.UploadFile(f.FullName);
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(Application.StartupPath + @"\ConfigADS.xml");
+                    XmlNode nodeList = doc.SelectSingleNode("/GenADS");
+                    if (nodeList != null)
+                    {
+                        foreach (XmlNode node in nodeList.ChildNodes)
+                        {
+                            string[] OnAds = node.Attributes["OnAds"].Value.Split(',');
+                            string[] RanAds = node.Attributes["RanAds"].Value.Split(',');
+
+                            FileInfo fileUpload = new FileInfo(Path.Combine(CTLConfig._pathfilelocal, node.Name + ".txt"));
+                            if (!fileUpload.Exists)
+                                continue;
+                            entyconfigfile enty = new entyconfigfile(fileUpload.FullName);
+                            enty.loadValuFromFile();
+                            enty.SetFalseALLAd();
+                            foreach (string str in OnAds)
+                            {
+                                enty.SetvalueKey(str, "true");
+                            }
+                            Random ran =new Random();
+                            foreach (string str in RanAds)
+                            {
+                                enty.SetvalueKey(str, ran.Next(0, 3) > 0 ? "true" : "false");
+                            }
+                            FTPHelper ftphelper = new FTPHelper(CTLConfig._user, CTLConfig._pass, CTLConfig._pathftp);
+                            ftphelper.UploadFile(fileUpload.FullName);
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    CTLError.WriteError("KO ton tai file ConfigADS.xml ", "Loi gen ads");
                 }
             }
             catch (Exception ex)
@@ -454,6 +502,10 @@ namespace Schedule_Upload_File_FTP
                 MessageBox.Show("Loi "+pathFile + ex.Message);
             }
         }
+
+
+        //code cu gen random ad all in config file
+     
         public void SetTrueFalseAD(string pathFile)
         {
             try
@@ -486,6 +538,9 @@ namespace Schedule_Upload_File_FTP
                 MessageBox.Show("Loi "+pathFile + ex.Message);
             }
         }
+       
+
+      
 
         private void btloadkey_Click(object sender, EventArgs e)
         {
@@ -547,56 +602,50 @@ namespace Schedule_Upload_File_FTP
                 DeleteSelectedRows(gridView1);
             }
         }
-        //public void ChangeOpenVpnConfig()
-        //{
-        //    try
-        //    {
-        //        DateTime test = DateTime.Now;
-        //        DateTime utcTime = test.ToUniversalTime(); // convert it to Utc using timezone setting of server computer
-        //        if (utcTime.Hour != Convert.ToInt32("0" + CTLConfig._HourChange)&&(utcTime.Hour==12||utcTime.Hour==0))
-        //        {
-        //            if (utcTime.Hour == 12)
-        //            {
-        //                DirectoryInfo d = new DirectoryInfo(Path.Combine(Application.StartupPath, "a1"));
-        //                if (d.Exists)
-        //                {
-        //                    DirectoryInfo doconfig = new DirectoryInfo(@"C:\Program Files\OpenVPN\config");
-        //                    if (doconfig.Exists)
-        //                    {
-        //                        foreach (FileInfo f in doconfig.GetFiles())
-        //                            f.Delete();
-        //                        foreach (FileInfo f in d.GetFiles())
-        //                        {
-        //                            f.CopyTo(Path.Combine(doconfig.FullName, f.Name),true);
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //            else if (utcTime.Hour == 0)
-        //            {
-        //                DirectoryInfo d = new DirectoryInfo(Path.Combine(Application.StartupPath, "a2"));
-        //                if (d.Exists)
-        //                {
-        //                    DirectoryInfo doconfig = new DirectoryInfo(@"C:\Program Files\OpenVPN\config");
-        //                    if (doconfig.Exists)
-        //                    {
-        //                        foreach (FileInfo f in doconfig.GetFiles())
-        //                            f.Delete();
-        //                        foreach (FileInfo f in d.GetFiles())
-        //                        {
-        //                            f.CopyTo(Path.Combine(doconfig.FullName, f.Name), true);
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //            CTLConfig._HourChange = utcTime.Hour.ToString();
-        //            CTLConfig.setconfig("HourChange", utcTime.Hour.ToString());
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        CTLError.WriteError("Loi ChangeOpenVpnConfig ", ex.Message);
-        //    }
-        //}
+        private XmlDocument doc;
+        private void btcreateOnAds_Click(object sender, EventArgs e)
+        {
+            doc = XmlHelper.CreateXmlDocument();
+
+            XmlNode newNode = doc.CreateElement("GenADS");
+            XmlNode rootNode = doc.AppendChild(newNode);
+
+
+            try
+            {
+                DirectoryInfo dsource = new DirectoryInfo(CTLConfig._pathfilelocal);
+                foreach (FileInfo f in dsource.GetFiles("*.txt"))
+                {
+                    string[] filename=f.Name.Split('.');
+                    if (filename.Length > 1)
+                    {
+                        newNode = doc.CreateElement(filename[0]);
+                        XmlHelper.CreateAttribute(newNode, "OnAds", "ad3");
+                        XmlHelper.CreateAttribute(newNode, "RanAds", "ad5,ad1");
+                        //XmlHelper.CreateAttribute(newNode, "Address", "32 Turtle Lane");
+                        //XmlHelper.CreateAttribute(newNode, "City", "Austin");
+                        //XmlHelper.CreateAttribute(newNode, "State", "TX");
+                        //XmlHelper.CreateAttribute(newNode, "Zip", "12345");
+
+                        rootNode.AppendChild(newNode);
+                    }
+                }
+                using (StreamWriter writefilexml = new StreamWriter(Path.Combine(Application.StartupPath, "ConfigADS.xml"),false))
+                {
+                    //writefilexml.
+                    writefilexml.Write(XmlHelper.DocumentToString(doc));
+                    writefilexml.Dispose();
+                    writefilexml.Close();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                CTLError.WriteError("Loi gen xml configADS.xml ", ex.Message);
+            }
+
+
+          
+        }       
     }
 }

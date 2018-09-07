@@ -79,6 +79,7 @@
             this.txtsplit = new System.Windows.Forms.TextBox();
             this.txtfileloadama = new System.Windows.Forms.TextBox();
             this.btloadkey = new System.Windows.Forms.Button();
+            this.btcreateOnAds = new System.Windows.Forms.Button();
             this.tabSetKey.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numtimertick)).BeginInit();
@@ -114,6 +115,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btcreateOnAds);
             this.tabPage1.Controls.Add(this.checkgenerateUpload);
             this.tabPage1.Controls.Add(this.bttestupload);
             this.tabPage1.Controls.Add(this.listBox1);
@@ -586,6 +588,16 @@
             this.btloadkey.UseVisualStyleBackColor = true;
             this.btloadkey.Click += new System.EventHandler(this.btloadkey_Click);
             // 
+            // btcreateOnAds
+            // 
+            this.btcreateOnAds.Location = new System.Drawing.Point(605, 124);
+            this.btcreateOnAds.Name = "btcreateOnAds";
+            this.btcreateOnAds.Size = new System.Drawing.Size(112, 23);
+            this.btcreateOnAds.TabIndex = 25;
+            this.btcreateOnAds.Text = "Create On ads";
+            this.btcreateOnAds.UseVisualStyleBackColor = true;
+            this.btcreateOnAds.Click += new System.EventHandler(this.btcreateOnAds_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -662,6 +674,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private System.Windows.Forms.Button btcreateOnAds;
     }
 }
 

@@ -229,6 +229,42 @@ namespace Schedule_Upload_File_FTP
                 return;
 
             }
+
+        }
+        public void SetFalseALLAd()
+        {
+            try
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(pathfile);
+
+
+                XmlElement node1 = xmlDoc.SelectSingleNode("/app/ad1" ) as XmlElement;
+                node1.InnerText = "false";          
+
+                XmlElement node2 = xmlDoc.SelectSingleNode("/app/ad2") as XmlElement;
+                node2.InnerText = "false";
+                XmlElement node3 = xmlDoc.SelectSingleNode("/app/ad3") as XmlElement;
+                node3.InnerText = "false";
+                XmlElement node4 = xmlDoc.SelectSingleNode("/app/ad4") as XmlElement;
+                node4.InnerText = "false";
+                XmlElement node5 = xmlDoc.SelectSingleNode("/app/ad5") as XmlElement;
+                node5.InnerText = "false";
+                XmlElement node6 = xmlDoc.SelectSingleNode("/app/ad6") as XmlElement;
+                node6.InnerText = "false";
+                XmlElement node7 = xmlDoc.SelectSingleNode("/app/ad7") as XmlElement;
+                node7.InnerText = "false";
+                XmlElement node8 = xmlDoc.SelectSingleNode("/app/ad8") as XmlElement;
+                node8.InnerText = "false";
+                xmlDoc.Save(pathfile);
+                loadValuFromFile();
+            }
+            catch (Exception exception)
+            {
+                CTLError.WriteError("entyconfigfile SetvalueKey ", exception.Message);
+                return;
+
+            }
         }
     }
 }
